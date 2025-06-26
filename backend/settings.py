@@ -18,7 +18,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG =True
 
-ALLOWED_HOSTS = ['lms-projects-backend-icon.onrender.com', '127.0.0.1','localhost']
+ALLOWED_HOSTS = ['lms-backend-hl9p.onrender.com', '127.0.0.1','localhost']
 
 # Application definition
 INSTALLED_APPS = [
