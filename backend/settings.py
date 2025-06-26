@@ -161,7 +161,8 @@ STRIPE_PUBLISHABLE_KEY = os.environ.get('PUBLISHABLE_KEY')
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:4000",
     "http://127.0.0.1:3000",
-    "https://lms-projects-backend-icon.onrender.com"
+    "https://the-medhakosh.netlify.app",
+    "https://lms-backend-hl9p.onrender.com",
 ]
 
 # CSRF_TRUSTED_ORIGINS = ['https://lms-projects-backend-icon.onrender.com']
