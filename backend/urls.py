@@ -31,6 +31,9 @@ urlpatterns = [
     # Core Features
     path("api/", include("api.core.urls")),
     
+    # reviews
+    path("api/", include("api.reviews.urls")),
+    
     # Documentation (drf_yasg)
     path(
         "swagger/",

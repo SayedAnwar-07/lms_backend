@@ -30,7 +30,7 @@ logger = logging.getLogger(__name__)
 
 
 class MyPagination(PageNumberPagination):
-    page_size = 10
+    page_size = 16
     page_size_query_param = "limit"
     max_page_size = 100
     page_query_param = 'page'
@@ -178,6 +178,8 @@ def update_course(request, pk):
     data = request.data.copy()
     if 'banner' not in data and hasattr(course, 'banner'):
         data['banner'] = course.banner
+    elif hasattr(data['banner'], 'read'):
+        pass
 
     serializer = CourseSerializer(course, data=data, partial=True)
     if serializer.is_valid():

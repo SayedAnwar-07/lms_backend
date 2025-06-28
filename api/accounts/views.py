@@ -29,7 +29,7 @@ def registerView(request):
                 "role": {"type": "string", "required": True, "choices": ["admin", "teacher", "student"]},
                 "mobile_no": {"type": "string", "required": False},
                 "full_name": {"type": "string", "required": False},
-                "avatar": {"type": "url", "required": False},  # Changed from file to url
+                "avatar": {"type": "url", "required": False},
             },
             "message": "Submit these fields to register a new account"
         }
@@ -41,8 +41,7 @@ def registerView(request):
                 "status": "error",
                 "message": "A user with this email already exists."
             }, status=status.HTTP_400_BAD_REQUEST)
-        
-        # No need to convert to dict, MultiPartParser handles files properly
+
         data = request.data
         serializer = UserRegistrationSerializer(data=data)
         
@@ -58,7 +57,7 @@ def registerView(request):
                         "role": user.role,
                         "full_name": user.full_name,
                         "mobile_no": user.mobile_no,
-                        "avatar": user.avatar  # Direct URL
+                        "avatar": user.avatar  
                     }
                 }
                 return Response(response_data, status=status.HTTP_201_CREATED)

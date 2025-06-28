@@ -40,6 +40,16 @@ class Course(models.Model):
 
     def __str__(self):
         return self.title
+    
+    @property
+    def enrolled_students_count(self):
+        """Returns the actual count of active enrollments"""
+        return self.enrollment_set.filter(is_active=True).count()
+    
+    def update_students_count(self):
+        """Updates the students field with the current enrollment count"""
+        self.students = self.enrolled_students_count
+        self.save()
 
 
 class CurriculumSection(models.Model):
@@ -117,6 +127,15 @@ class Enrollment(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.course.title}"
+    
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.course.update_students_count()
+    
+    def delete(self, *args, **kwargs):
+        course = self.course
+        super().delete(*args, **kwargs)
+        course.update_students_count()
     
     
 class LessonCompletion(models.Model):
